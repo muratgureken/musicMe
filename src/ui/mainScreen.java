@@ -110,15 +110,18 @@ public class mainScreen extends JFrame{
 		lblPlayPhoto.setIcon(new ImageIcon(getClass().getResource(images)));
 
 		btnPlay = new JButton(">");
+		btnPlay.setToolTipText("Play");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btnPlay.getText().equals(">"))
 				{
 					btnPlay.setText("||");
+					btnPlay.setToolTipText("Pause");
 				}
 				else if(btnPlay.getText().equals("||"))
 				{
 					btnPlay.setText(">");
+					btnPlay.setToolTipText("Play");
 				}
 			}
 		});
@@ -126,22 +129,27 @@ public class mainScreen extends JFrame{
 		btnPlay.setBounds(178, 354, 57, 43);
 
 		btnAddToPlaylist = new JButton("+");
+		btnAddToPlaylist.setToolTipText("Add to playlist");
 		btnAddToPlaylist.setBounds(81, 360, 44, 32);
 
 		btnRepeat = new JButton("-");
+		btnRepeat.setToolTipText("No repeat");
 		btnRepeat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btnRepeat.getText().equals("-"))
 				{
 					btnRepeat.setText("1");
+					btnRepeat.setToolTipText("Repeat song");
 				}
 				else if(btnRepeat.getText().equals("1"))
 				{
 					btnRepeat.setText("A");
+					btnRepeat.setToolTipText("Repeat all songs");
 				}
 				else if(btnRepeat.getText().equals("A"))
 				{
 					btnRepeat.setText("-");
+					btnRepeat.setToolTipText("No repeat");
 				}
 			}
 		});
