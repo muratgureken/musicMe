@@ -3,6 +3,8 @@ package ui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.DropMode;
 import javax.swing.ImageIcon;
@@ -36,6 +40,7 @@ public class mainScreen extends JFrame{
 	JLabel lblPlayPhoto;
 	String images = "/image/rsz_solanahtari.png";
 	private JLabel lblPlayedPhoto;
+	private JButton btnHome;
 
 	public mainScreen() {
 		getContentPane().setLayout(null);
@@ -101,7 +106,7 @@ public class mainScreen extends JFrame{
 		txtCreatedByMgureken.setText("Created by mgureken 26.03.2019");
 		txtCreatedByMgureken.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtCreatedByMgureken.setBackground(new Color(128, 0, 128));
-		txtCreatedByMgureken.setBounds(10, 422, 386, 50);
+		txtCreatedByMgureken.setBounds(148, 422, 248, 50);
 		txtCreatedByMgureken.setColumns(10);
 		getContentPane().add(txtCreatedByMgureken);
 
@@ -200,6 +205,17 @@ public class mainScreen extends JFrame{
 				}
 			}
 		});
+		
+		tableSearch.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				System.out.println("mouse:"+arg0.getButton());
+				if(arg0.getButton()==3)
+				{
+					int returnValue;
+					returnValue = JOptionPane.showConfirmDialog(mainScreen.this, "Delete form playlist?");
+				}
+			}
+		});
 		scrollSeach.setViewportView(tableSearch);
 		tableSearch.setBounds(10, 146, 386, 265);
 		tableSearch.setForeground(Color.white);
@@ -214,8 +230,8 @@ public class mainScreen extends JFrame{
 				windowChangeControl(windowType);
 			}
 		});
-		btnBack.setBackground(new Color(0, 255, 127));
-		btnBack.setBounds(307, 121, 89, 23);
+		btnBack.setBackground(new Color(128, 0, 128));
+		btnBack.setBounds(78, 422, 70, 50);
 
 		//ADD TO CONTENT PANE
 		getContentPane().add(btnHistory1);
@@ -233,6 +249,12 @@ public class mainScreen extends JFrame{
 		getContentPane().add(btnAddToPlaylist);
 		getContentPane().add(btnBack);
 		getContentPane().add(lblPlayedPhoto);
+		
+		btnHome = new JButton("Home");
+		btnHome.setForeground(Color.WHITE);
+		btnHome.setBackground(new Color(128, 0, 128));
+		btnHome.setBounds(10, 422, 70, 50);
+		getContentPane().add(btnHome);
 
 		windowChangeControl(0);
 	}
@@ -252,7 +274,6 @@ public class mainScreen extends JFrame{
 			tableSearch.setVisible(false);
 			scrollSeach.setVisible(false);
 			txtSearch.setVisible(false);
-			btnBack.setVisible(false);
 
 			lblPlayPhoto.setVisible(false);
 			btnPlay.setVisible(false);
@@ -281,7 +302,6 @@ public class mainScreen extends JFrame{
 
 			scrollSeach.setVisible(true);
 			txtSearch.setVisible(true);
-			btnBack.setVisible(true);
 
 			lblPlayPhoto.setVisible(false);
 			btnPlay.setVisible(false);
@@ -309,7 +329,6 @@ public class mainScreen extends JFrame{
 			tableSearch.setModel(new DefaultTableModel(data, new String[]{"Playlist","No# Song"}));
 
 			scrollSeach.setVisible(true);
-			btnBack.setVisible(true);
 
 			lblPlayPhoto.setVisible(false);
 			btnPlay.setVisible(false);
@@ -330,7 +349,6 @@ public class mainScreen extends JFrame{
 
 			tableSearch.setVisible(false);
 			scrollSeach.setVisible(false);
-			btnBack.setVisible(true);
 
 			lblPlayPhoto.setVisible(true);
 			btnPlay.setVisible(true);
@@ -360,7 +378,6 @@ public class mainScreen extends JFrame{
 			tableSearch.setModel(new DefaultTableModel(data, new String[]{"Song","Singer"}));
 			
 			scrollSeach.setVisible(true);
-			btnBack.setVisible(true);
 
 			lblPlayPhoto.setVisible(false);
 			btnPlay.setVisible(false);
