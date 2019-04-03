@@ -1,5 +1,7 @@
 package ui;
 
+import sun.audio.*;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -8,6 +10,8 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+
+import com.sun.media.jfxmedia.events.PlayerEvent;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -19,6 +23,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.DropMode;
 import javax.swing.ImageIcon;
@@ -115,6 +121,31 @@ public class mainScreen extends JFrame{
 		lblPlayPhoto.setIcon(new ImageIcon(getClass().getResource(images)));
 
 		btnPlay = new JButton(">");
+		btnPlay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AudioStream as = null;
+				try {
+					as = new AudioStream(this.getClass().getResourceAsStream("/OneRepublic-CountingStars.mp3"));
+					AudioPlayer.player.start(as);
+					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+				//as = new AudioStream(this.getClass().getResourceAsStream("/Musics/OneRepublic-CountingStars.mp3"));
+				/*AudioPlayer.player.stop(as);
+				try {
+					as = new AudioStream(this.getClass().getResourceAsStream("/Musics/OneRepublic-CountingStars.mp3"));
+					AudioPlayer.player.stop(as);
+					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}*/
+				
+				
+			}
+		});
 		btnPlay.setToolTipText("Play");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
